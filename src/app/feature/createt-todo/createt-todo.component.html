@@ -1,0 +1,44 @@
+<div class="todos-creater">
+  <form 
+    class="form-create"
+    (ngSubmit)="createTodo()"
+    [formGroup]="createTodoService.form"
+  >
+    <input 
+    class="content-input" 
+    type="text" 
+    placeholder="write smt..."
+    #myInput
+    formControlName="text"
+    (input)="createTodoService.removeError()"
+    >
+    <button 
+      class="btn btn-create" 
+      type="submit"
+      [disabled]="createTodoService.form.invalid"
+      > 
+     
+    <svg width="25" height="25" fill="white">
+      <use xlink:href="assets/sprite.svg#create-ic"></use> 
+    </svg>
+    </button>
+    <!-- make error component-->
+    <div 
+      *ngIf="createTodoService.form.get('text')?.invalid 
+          && createTodoService.form.get('text')?.touched"
+      class="validation">
+      <small *ngIf="createTodoService.form.get('text')!.errors!['maxlength']">
+        The field cannot contain more than 90 characters.
+        Actual number of characters: {{createTodoService.form.get('text')!.errors!['maxlength'].actualLength}} 
+      </small>
+      <small *ngIf="createTodoService.form.get('text')!.errors!['required']">
+        The field cannot be empty
+      </small>
+    </div>
+  </form>
+  <p *ngIf="createTodoService.isError" class="error"> {{createTodoService.errorMessage}} </p>
+  <p *ngIf="createTodoService.isSuccess" class="success"> Task added successfully </p>
+  <p *ngIf="createTodoService.isLoading" class="loading">
+    <app-spinner></app-spinner>
+  </p>
+</div>

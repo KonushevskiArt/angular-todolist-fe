@@ -1,0 +1,13 @@
+<app-main-layout>
+  <app-createt-todo></app-createt-todo>
+  <div *ngIf="!todosService.isLoading && !todosService.isError">
+    <app-todo 
+      *ngFor="let todo of todosService.todos"
+      [todo]="todo"
+    ></app-todo>
+  </div>
+  <p *ngIf="todosService.isLoading && !todosService.isError" class="loading-center">
+    <app-big-spinner></app-big-spinner>
+  </p>
+  <p *ngIf="todosService.isError" class="error">data loading error...</p>
+</app-main-layout>

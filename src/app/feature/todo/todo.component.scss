@@ -1,0 +1,82 @@
+.todo {
+  position: relative;
+  padding: 15px;
+  padding-left: 45px;
+  padding-right: 150px;
+  border: 1px rgb(107, 31, 206) solid;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  background-color: rgba(233, 233, 233, 0.746);
+  transition: background-color 0.4s;
+}
+.todo-done {
+  background-color: rgba(141, 172, 255, 0.938);
+}
+.text-done {
+  text-decoration: line-through;
+}
+.btns {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+.time {
+  display: inline-block;
+  margin-top: 10px;
+}
+.checkbox {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.btn-edit, .btn-save-text {
+  margin-right: 8px;
+  background-color:rgba(114, 79, 155, 0.911);
+  &:hover {
+    background-color:rgba(123, 90, 212, 0.904);
+  }
+}
+.btn-save-text:disabled {
+  background-color:rgba(155, 155, 155, 0.911);
+  &:hover {
+    background-color:rgba(192, 191, 194, 0.904);
+  }
+}
+.btn-remove {
+  margin-left: 10px;
+}
+.edit-text {
+  width: 90%;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid rgb(125, 71, 212);
+  font-size: 16px;
+}
+.form-edit-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+input {
+  &.ng-invalid.ng-touched {
+    border: 2px solid rgb(231, 65, 65);
+  }
+  &.ng-valid.ng-touched {
+    border: 2px solid rgb(55, 207, 67);
+  }
+}
+.validation {
+  margin-top: 10px;
+  color: rgb(216, 40, 40);
+}

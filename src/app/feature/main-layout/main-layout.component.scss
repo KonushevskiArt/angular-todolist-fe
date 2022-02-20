@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+ 
+}
+.layout {
+  width: 80vw;
+  max-width: 800px;
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

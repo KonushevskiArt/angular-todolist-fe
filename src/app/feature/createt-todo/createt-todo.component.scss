@@ -1,0 +1,42 @@
+.todos-creater {
+  position: relative;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(15, 138, 56);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+ 
+}
+.validation {
+  margin-top: 10px;
+  color: rgb(228, 53, 53);
+}
+.content-input {
+  width: 80%;
+  border-radius: 8px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+}
+.btn-create {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+.btn-create:disabled {
+  background-color:rgba(155, 155, 155, 0.911);
+  &:hover {
+    background-color:rgba(192, 191, 194, 0.904);
+  }
+}
+input {
+  &.ng-invalid.ng-touched {
+    border: 2px solid rgb(231, 65, 65);
+  }
+  &.ng-valid.ng-touched {
+    border: 2px solid rgb(55, 207, 67);
+  }
+}

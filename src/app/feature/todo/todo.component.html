@@ -1,0 +1,71 @@
+<div 
+  class="todo"
+  [@anima]="animaState"
+  *ngIf="todoService.isVisible"
+  (@anima.done)="animaDone($event, todoService.todo._id)"
+  [ngClass]="{
+    'todo-done': todoService.todo.isDone
+  }"
+  >
+<input 
+  class="checkbox" 
+  type="checkbox" 
+  [checked]="todoService.todo.isDone"
+  (change)="todoService.toggleDone(todoService.todo._id, todoService.todo)"
+>
+<div [ngSwitch]="todoService.isEdit">
+  <p 
+    *ngSwitchCase="false"
+    class="text"
+    [appToggleClass]="{flag: todoService.todo.isDone, className: 'text-done'}"
+  > 
+    {{todoService.todo.text | myUppercase}} 
+  </p>
+  <form 
+    class="form-edit"
+    *ngSwitchCase="true"
+    (ngSubmit)="todoService.editText(todoService.todo)"
+    [formGroup]="form"
+  >
+    <div class="form-edit-wrapper">
+      <input class="edit-text" type="text" formControlName="text">
+      <button class="btn btn-save-text" type="submit" [disabled]="form.invalid">
+        <svg width="20" height="20" fill="white">
+          <use xlink:href="assets/sprite.svg#save-ic"></use> 
+        </svg>
+      </button>
+    </div>
+    <div 
+      *ngIf="form.get('text')?.invalid 
+          && form.get('text')?.touched"
+      class="validation">
+      <small *ngIf="form.get('text')!.errors!['maxlength']">
+        The field cannot contain more than 90 characters.
+        Actual number of characters: {{form.get('text')!.errors!['maxlength'].actualLength}} 
+      </small>
+      <small *ngIf="form.get('text')!.errors!['required']">
+        The field cannot be empty
+      </small>
+    </div>
+  </form>
+
+</div>
+  <div class="btns">
+    <button *ngIf="!todoService.isEdit" class="btn-edit btn" (click)="todoService.toggleEdit()">
+      <svg width="20" height="20" fill="white">
+        <use xlink:href="assets/sprite.svg#edit-ic"></use> 
+      </svg>
+    </button>
+    <button (click)="todoService.remove(todoService.todo._id)" class="btn btn-remove">
+      <svg width="20" height="20" fill="white">
+        <use xlink:href="assets/sprite.svg#trash-ic"></use> 
+      </svg>
+    </button>
+  </div>
+  <time class="time">{{todoService.todo.createdAt | date:'short'}}</time>
+  <p *ngIf="todoService.isError" class="error"> {{todoService.errorMessage}} </p>
+  <p *ngIf="todoService.isLoading" class="loading">
+    <app-spinner></app-spinner>
+  </p>
+  
+</div>
